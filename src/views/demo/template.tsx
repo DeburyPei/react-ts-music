@@ -3,13 +3,13 @@ import type {FC,ReactNode} from "react";
 interface IProps {
     children?:ReactNode,
 }
-const Download:FC<IProps> = () =>{
+const demo:FC<IProps> = () =>{
     return (
         <div>
-          Download
+          demo
         </div>
     )
 }
-export default memo(Download)
+export default memo(demo)
 
 
