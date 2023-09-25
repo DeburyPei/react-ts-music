@@ -3,8 +3,8 @@ import { useRoutes , Link } from 'react-router-dom'
 import '@/App.css';
 import routes from '@/router'
 
-import  {shallowEqualApp, useAppSelector} from "@/store";
-import {useDispatch} from "react-redux";
+import {shallowEqualApp, useAppDispatch, useAppSelector} from "@/store";
+
 import {changeMessage} from "@/store/modules/counter";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
     }),
         shallowEqualApp
     )
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     function handleMessage() {
         dispatch(changeMessage('能不能让我找到个工作'))
     }
