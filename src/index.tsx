@@ -13,8 +13,8 @@ const root = ReactDOM.createRoot(
 // eslint-disable-next-line react/no-deprecated
 root.render(
     <Provider store={store}>
-    <HashRouter>
-        <App />
-    </HashRouter>
+        <HashRouter>
+            <App />
+        </HashRouter>
     </Provider>
 );

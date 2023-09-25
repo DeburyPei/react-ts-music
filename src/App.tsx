@@ -4,6 +4,8 @@ import '@/App.css';
 import routes from '@/router'
 
 import  {shallowEqualApp, useAppSelector} from "@/store";
+import {useDispatch} from "react-redux";
+import {changeMessage} from "@/store/modules/counter";
 
 function App() {
 
@@ -15,7 +17,10 @@ function App() {
     }),
         shallowEqualApp
     )
-
+    const dispatch = useDispatch()
+    function handleMessage() {
+        dispatch(changeMessage('能不能让我找到个工作'))
+    }
   return (
 
     <div className="App">
@@ -27,7 +32,7 @@ function App() {
         </div>
         <h2>{store.count}</h2>
         <h2>{store.message}</h2>
-
+        <button onClick={handleMessage}>改变信息</button>
         <Suspense fallback="loading">
             <div className="main">
                 { useRoutes(routes) }
