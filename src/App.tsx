@@ -6,8 +6,8 @@ import routes from '@/router'
 import {shallowEqualApp, useAppDispatch, useAppSelector} from "@/store";
 
 import {changeMessage} from "@/store/modules/counter";
-import AppHeader from './views/app-header';
-import AppFooter from "@/views/app-footer";
+import AppHeader from './components/app-header';
+import AppFooter from "@/components/app-footer";
 
 function App() {
 
