@@ -39,9 +39,9 @@ function App() {
         </div>
 
 
-        <h2>{store.count}</h2>
-        <h2>{store.message}</h2>
-        <button onClick={handleMessage}>改变信息</button>
+        {/*<h2>{store.count}</h2>*/}
+        {/*<h2>{store.message}</h2>*/}
+        {/*<button onClick={handleMessage}>改变信息</button>*/}
     </div>
 
   );

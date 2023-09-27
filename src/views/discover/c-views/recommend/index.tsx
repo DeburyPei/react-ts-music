@@ -1,6 +1,7 @@
 import React, {memo, useEffect, useState} from "react";
 import type {FC,ReactNode} from "react";
 import hyRequest from "@/service";
+import NavBar from "../../c-cpns/nav-bar";
 interface IProps {
     children?:ReactNode,
 }
@@ -34,6 +35,7 @@ const Recommend:FC<IProps> = () =>{
     },[])
     return (
         <div>
+
             { banners.map((item,index)=>{
                 return <div key={index}>{item.imageUrl}</div>
             })}
