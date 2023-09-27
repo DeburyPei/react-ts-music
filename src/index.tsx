@@ -7,7 +7,7 @@ import {HashRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "@/store";
 
-import './assets/css/common.css'
+import '@/assets/css/index.css'
 import { ThemeProvider } from 'styled-components'
 import theme from "./assets/theme";
 

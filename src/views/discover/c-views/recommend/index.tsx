@@ -24,9 +24,12 @@ const Recommend:FC<IProps> = () =>{
         hyRequest.get({
             url:'/banner'
         }).then((res)=>{
-            console.log(res.banners)
+
             setBanners(res.banners)
 
+        }).catch((error)=>{
+            console.error(error)
+            alert("获取banner失败 请检查api")
         })
     },[])
     return (

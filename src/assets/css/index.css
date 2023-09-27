@@ -1,3 +1,4 @@
+@import '~antd/lib/style/reset.css';
 body,
 textarea,
 select,
@@ -49,4 +50,44 @@ button {
 .sprite_playlist {
   background: url(../img/playlist_sprite.png) no-repeat 0 9999px;
 }
-/*# sourceMappingURL=common.css.map */
+body,
+html,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+header,
+menu,
+section,
+p,
+input,
+td,
+th,
+ins {
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+img {
+  vertical-align: top;
+}
+ul,
+li {
+  list-style: none;
+}
+button {
+  outline: none;
+  border: none;
+}
+/*# sourceMappingURL=index.css.map */

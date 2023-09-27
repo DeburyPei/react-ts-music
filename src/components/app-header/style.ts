@@ -18,7 +18,7 @@ export const HeaderWrapper = styled.div`
 `
 export const HeaderLeft = styled.div`
   display: flex;
-
+  
   .logo {
     display: block;
     width: 176px;
@@ -33,14 +33,12 @@ export const HeaderLeft = styled.div`
 
     .item {
       position: relative;
-
       a {
         display: block;
         padding: 0 20px;
         color: #ccc;
       }
-
-      :last-of-type a {
+      :last-of-type a{
         position: relative;
         ::after {
           position: absolute;
@@ -73,6 +71,19 @@ export const HeaderLeft = styled.div`
       }
     }
   }
+
+  .title-list .item:last-of-type a{
+    position: relative;
+    ::after {
+      position: absolute;
+      content: '';
+      width: 28px;
+      height: 19px;
+      background-image: url(${require('@/assets/img/sprite_01.png')});
+      background-position: -190px 0;
+      top: 20px;
+      right: -15px;
+    }
 `
 export const HeaderRight = styled.div`
   display: flex;
@@ -92,7 +103,7 @@ export const HeaderRight = styled.div`
     }
   }
 
-  .center {
+  > .center {
     width: 90px;
     height: 32px;
     line-height: 32px;
@@ -102,10 +113,15 @@ export const HeaderRight = styled.div`
     border-radius: 16px;
     color: #ccc;
     cursor: pointer;
-
-    :hover {
+    &:hover {
       color: #fff;
       border-color: #fff;
     }
+    
   }
+  //.center:hover {
+  //  color: #fff;
+  //  border-color: #fff;
+  //}
+  
 `

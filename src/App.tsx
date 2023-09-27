@@ -29,13 +29,16 @@ function App() {
         <div className="nav">
             <AppHeader />
         </div>
+        <div className="body wrap-v2">
+            <Suspense fallback="">
+                <div className="main">
+                    { useRoutes(routes) }
+                </div>
+            </Suspense>
+            <AppFooter />
+        </div>
 
-        <Suspense fallback="">
-            <div className="main">
-                { useRoutes(routes) }
-            </div>
-        </Suspense>
-        <AppFooter />
+
         <h2>{store.count}</h2>
         <h2>{store.message}</h2>
         <button onClick={handleMessage}>改变信息</button>
