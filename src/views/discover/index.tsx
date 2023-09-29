@@ -9,9 +9,12 @@ const Discover:FC<IProps> = () =>{
     return (
         <div>
                     <NavBar />
+            <div className="wrap-v2">
                 <Suspense fallback="">
                     <Outlet />
                 </Suspense>
+            </div>
+
 
 
         </div>

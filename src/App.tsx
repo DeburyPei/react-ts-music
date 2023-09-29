@@ -29,13 +29,16 @@ function App() {
         <div className="nav">
             <AppHeader />
         </div>
-        <div className="body wrap-v2">
+        <div className="body ">
             <Suspense fallback="">
                 <div className="main">
                     { useRoutes(routes) }
                 </div>
             </Suspense>
-            <AppFooter />
+            <div className="wrap-v2">
+                <AppFooter />
+            </div>
+
         </div>
 
 
