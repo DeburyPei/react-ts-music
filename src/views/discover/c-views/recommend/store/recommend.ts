@@ -5,7 +5,7 @@ export const fetchBannerDataAction = createAsyncThunk(
     'banners',
     async (arg,{dispatch})=>{
     const res = await getBanners()
-        // console.log(res)
+
     dispatch(changeBannersAction(res.banners))
 })
 interface IRecommendState{
