@@ -7,9 +7,9 @@ interface IProps {
 }
 const Discover:FC<IProps> = () =>{
     return (
-        <div>
+            <div>
                     <NavBar />
-            <div className="wrap-v2">
+            <div >
                 <Suspense fallback="">
                     <Outlet />
                 </Suspense>
@@ -17,7 +17,7 @@ const Discover:FC<IProps> = () =>{
 
 
 
-        </div>
+            </div>
     )
 }
 export default memo(Discover)
