@@ -4,6 +4,7 @@ import {useAppDispatch} from "@/store";
 import {fetchBannerDataAction} from "@/views/discover/c-views/recommend/store/recommend";
 import TopBanner from "./c-cpns/top-banners";
 import {RecommendWrapper} from "@/views/discover/c-views/recommend/style";
+import HotRecommend from "@/views/discover/c-views/recommend/c-cpns/hot-recommend";
 
 
 interface IProps {
@@ -20,7 +21,10 @@ const Recommend:FC<IProps> = () =>{
         <RecommendWrapper>
           <TopBanner />
             <div className="content wrap-v2">
-                <div className="left">left</div>
+                <div className="left">
+                    <HotRecommend />
+                    left
+                </div>
                 <div className="right">right</div>
             </div>
         </RecommendWrapper>
