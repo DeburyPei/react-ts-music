@@ -2,9 +2,8 @@ import React, {memo, useEffect} from "react";
 import type {FC,ReactNode} from "react";
 import {useAppDispatch} from "@/store";
 import {
-    fecchHotRecommendAction,
-    fetchBannerDataAction,
-    fetchNewAlbumAction
+   fetcgRecommendDataAction,
+
 } from "@/views/discover/c-views/recommend/store/recommend";
 import TopBanner from "./c-cpns/top-banners";
 import {RecommendWrapper} from "@/views/discover/c-views/recommend/style";
@@ -19,9 +18,10 @@ const Recommend:FC<IProps> = () =>{
     /** 发起action(获取数据) */
     const dispatch = useAppDispatch()
     useEffect(()=>{
-        dispatch(fetchBannerDataAction())
-        dispatch(fecchHotRecommendAction())
-        dispatch(fetchNewAlbumAction())
+        dispatch(fetcgRecommendDataAction())
+        // dispatch(fetchBannerDataAction())
+        // dispatch(fecchHotRecommendAction())
+        // dispatch(fetchNewAlbumAction())
     },[])
     /** render函数的返回jsx */
     return (
