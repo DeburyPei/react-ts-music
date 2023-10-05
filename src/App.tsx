@@ -35,7 +35,7 @@ function App() {
                     { useRoutes(routes) }
                 </div>
             </Suspense>
-            <div className="wrap-v2">
+            <div >
                 <AppFooter />
             </div>
 

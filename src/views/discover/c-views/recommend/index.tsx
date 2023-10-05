@@ -2,13 +2,14 @@ import React, {memo, useEffect} from "react";
 import type {FC,ReactNode} from "react";
 import {useAppDispatch} from "@/store";
 import {
-   fetcgRecommendDataAction,
+    fetcgRecommendDataAction, fetchRankingDataAction,
 
 } from "@/views/discover/c-views/recommend/store/recommend";
 import TopBanner from "./c-cpns/top-banners";
 import {RecommendWrapper} from "@/views/discover/c-views/recommend/style";
 import HotRecommend from "@/views/discover/c-views/recommend/c-cpns/hot-recommend";
 import NewAlbum from "@/views/discover/c-views/recommend/c-cpns/new-album";
+import TopRanking from "@/views/discover/c-views/recommend/c-cpns/top-ranking";
 
 
 interface IProps {
@@ -19,6 +20,7 @@ const Recommend:FC<IProps> = () =>{
     const dispatch = useAppDispatch()
     useEffect(()=>{
         dispatch(fetcgRecommendDataAction())
+        dispatch(fetchRankingDataAction())
         // dispatch(fetchBannerDataAction())
         // dispatch(fecchHotRecommendAction())
         // dispatch(fetchNewAlbumAction())
@@ -31,6 +33,7 @@ const Recommend:FC<IProps> = () =>{
                 <div className="left">
                     <HotRecommend />
                     <NewAlbum />
+                    <TopRanking />
                 </div>
                 <div className="right">right</div>
             </div>
