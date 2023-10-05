@@ -5,6 +5,7 @@ import {fecchHotRecommendAction, fetchBannerDataAction} from "@/views/discover/c
 import TopBanner from "./c-cpns/top-banners";
 import {RecommendWrapper} from "@/views/discover/c-views/recommend/style";
 import HotRecommend from "@/views/discover/c-views/recommend/c-cpns/hot-recommend";
+import NewAlbum from "@/views/discover/c-views/recommend/c-cpns/new-album";
 
 
 interface IProps {
@@ -24,7 +25,7 @@ const Recommend:FC<IProps> = () =>{
             <div className="content wrap-v2">
                 <div className="left">
                     <HotRecommend />
-                    left
+                    <NewAlbum />
                 </div>
                 <div className="right">right</div>
             </div>
