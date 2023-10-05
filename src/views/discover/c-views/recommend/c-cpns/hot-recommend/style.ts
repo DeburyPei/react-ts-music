@@ -1,3 +1,9 @@
 import styled from 'styled-components'
 
-export const header = styled.div``
+export const RecommendWrapper = styled.div`
+  .recommend-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+`
