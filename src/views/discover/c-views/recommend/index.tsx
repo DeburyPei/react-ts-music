@@ -3,6 +3,7 @@ import type {FC,ReactNode} from "react";
 import {useAppDispatch} from "@/store";
 import {fetchBannerDataAction} from "@/views/discover/c-views/recommend/store/recommend";
 import TopBanner from "./c-cpns/top-banners";
+import {RecommendWrapper} from "@/views/discover/c-views/recommend/style";
 
 
 interface IProps {
@@ -16,9 +17,13 @@ const Recommend:FC<IProps> = () =>{
     },[])
     /** render函数的返回jsx */
     return (
-        <div>
+        <RecommendWrapper>
           <TopBanner />
-        </div>
+            <div className="content wrap-v2">
+                <div className="left">left</div>
+                <div className="right">right</div>
+            </div>
+        </RecommendWrapper>
     )
 }
 export default memo(Recommend)
