@@ -5,6 +5,8 @@ import AreaHeaderV1 from "@/components/area-header";
 import {Carousel} from 'antd'
 import newAlbum from "@/views/discover/c-views/recommend/c-cpns/new-album/index";
 import {useAppSelector} from "@/store";
+
+import NewAlbumItem from "@/components/new-album-item";
 interface IProps {
     children?:ReactNode,
 }
@@ -30,10 +32,12 @@ const NewAlbum:FC<IProps> = () =>{
                 <div className="banner">
                     <Carousel ref={bannerRef} dots={false} speed={1500}>
                         {[0,1].map((item) => (
-                            <div className="album-list" key={item}>
+                            <div key={item}>
+                            <div className="album-list" >
                                 {newAlbums.slice(item*5,(item+1)*5).map(album=>{
-                                    return <div key={album.id}>{album.name}</div>
+                                    return <NewAlbumItem key={album.id} itemData={album}/>
                                 })}
+                            </div>
                             </div>
                         ))}
                     </Carousel>
