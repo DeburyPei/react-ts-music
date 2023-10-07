@@ -74,7 +74,7 @@ export const BarPlayerInfo = styled.div`
       position: relative;
       top: 8px;
       left: 8px;
-
+      display: flex;
       .singer-name {
         color: #a1a1a1;
         margin-left: 10px;
