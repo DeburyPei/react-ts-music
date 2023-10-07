@@ -8,6 +8,7 @@ import {shallowEqualApp, useAppDispatch, useAppSelector} from "@/store";
 import {changeMessage} from "@/store/modules/counter";
 import AppHeader from './components/app-header';
 import AppFooter from "@/components/app-footer";
+import AppPlayerBar from "@/views/player/app-player-bar";
 
 function App() {
 
@@ -35,9 +36,9 @@ function App() {
                     { useRoutes(routes) }
                 </div>
             </Suspense>
-            <div >
+
                 <AppFooter />
-            </div>
+            <AppPlayerBar />
 
         </div>
 
