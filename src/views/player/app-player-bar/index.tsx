@@ -33,13 +33,13 @@ const AppPlayerBar:FC<IProps> = () =>{
     },[currentSong])
     // 音乐播放得进度处理
     function handleTimeUpdate() {
-        const currentTime = audioRef.current!.currentTime * 1000
+        const currentTime = audioRef.current!.currentTime
 
 
         // 计算当前歌曲进度
         // api 给的数据是毫秒 但是 currentTime是秒 所以 x1000  除以总进度 然后计算百分比
         if(!isSliding){
-            const progress = (currentTime /duration) * 100
+            const progress = (currentTime * 1000  /duration) * 100
             setProgress(progress)
             setCurrentTime(currentTime)
         }
@@ -76,7 +76,7 @@ const AppPlayerBar:FC<IProps> = () =>{
         setProgress(value)
         setIsSliding(false)
     }
-    console.log("progress",progress)
+
     return (
         <PlayerBarWrapper className="sprite_playbar">
             <div className="content wrap-v2">
@@ -88,20 +88,20 @@ const AppPlayerBar:FC<IProps> = () =>{
                 </BarControl>
                 <BarPlayerInfo>
                     <Link to="/player">
-                        <img className="image" src={getImageSize(currentSong.al.picUrl,50)} alt=""/>
+                        <img className="image" src={getImageSize(currentSong.al?.picUrl,50)} alt=""/>
                     </Link>
                     <div className="info">
                         <div className="song">
                             <span className="song-name">{currentSong.name}</span>
-                            <span className="singer-name">{currentSong?.ar[0]?.name}</span>
+                            <span className="singer-name">{currentSong?.ar?.[0]?.name}</span>
                         </div>
                         <div className="progress">
                             <Slider
                                 step={0.5}
-                                // value={progress}
+                                value={progress}
                                 tooltip={{formatter:null}}
                                 onAfterChange={handleSliderChanged}
-                                onChange={handleSliderChanged}
+                                onChange={handleSliderChanging}
 
                             />
                             <div className="time">
@@ -126,7 +126,10 @@ const AppPlayerBar:FC<IProps> = () =>{
                     </div>
                 </BarOperator>
             </div>
-            <audio ref={audioRef} onTimeUpdate={handleTimeUpdate}/>
+            <audio
+                ref={audioRef}
+                onTimeUpdate={handleTimeUpdate}
+            />
         </PlayerBarWrapper>
     )
 }

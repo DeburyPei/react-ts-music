@@ -1,4 +1,4 @@
-import React ,{Suspense} from 'react';
+import React, {Suspense, useEffect} from 'react';
 import { useRoutes  } from 'react-router-dom'
 import '@/App.css';
 import routes from '@/router'
@@ -9,10 +9,13 @@ import {changeMessage} from "@/store/modules/counter";
 import AppHeader from './components/app-header';
 import AppFooter from "@/components/app-footer";
 import AppPlayerBar from "@/views/player/app-player-bar";
+import {fetchCurrentSongAction} from "@/views/player/store/player";
 
 function App() {
 
-
+    useEffect(()=>{
+        dispatch(fetchCurrentSongAction(3404770))
+    },[])
     const store = useAppSelector((state)=>({
         count:state.counter.count,
         message:state.counter.message,
