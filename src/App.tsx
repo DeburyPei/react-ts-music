@@ -14,7 +14,7 @@ import {fetchCurrentSongAction} from "@/views/player/store/player";
 function App() {
 
     useEffect(()=>{
-        dispatch(fetchCurrentSongAction(3404770))
+        dispatch(fetchCurrentSongAction(5041667))
     },[])
     const store = useAppSelector((state)=>({
         count:state.counter.count,

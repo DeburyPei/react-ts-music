@@ -50,6 +50,14 @@ button {
 .sprite_playlist {
   background: url(../img/playlist_sprite.png) no-repeat 0 9999px;
 }
+.ant-message .ant-message-notice-content {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 888px;
+  background-color: #000000 !important;
+  color: #fff;
+}
 body,
 html,
 h1,

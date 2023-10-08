@@ -2,10 +2,12 @@ import React, {memo, useEffect, useRef, useState} from "react";
 import type {FC,ReactNode} from "react";
 import {BarControl, BarOperator, BarPlayerInfo, PlayerBarWrapper} from "@/views/player/app-player-bar/style";
 import {Link} from "react-router-dom";
-import {Slider} from 'antd'
-import {shallowEqualApp, useAppSelector} from "@/store";
+import {message, Slider} from 'antd'
+import {shallowEqualApp, useAppDispatch, useAppSelector} from "@/store";
 import {formatTime, getImageSize} from "@/utils/format";
 import {getSongPlayUrl} from "@/utils/handle-player";
+import {changeLyricIndexAction} from "@/views/player/store/player";
+
 interface IProps {
     children?:ReactNode,
 }
@@ -21,9 +23,12 @@ const AppPlayerBar:FC<IProps> = () =>{
     const [isSliding, setIsSliding] = useState(false)
     const audioRef = useRef<HTMLAudioElement>(null)
     // 从 redux 中获取数据
-    const {currentSong} = useAppSelector((state)=>({
-        currentSong:state.player.currentSong
+    const {currentSong,lyrics,lyricIndex} = useAppSelector((state)=>({
+        currentSong:state.player.currentSong,
+        lyrics:state.player.lyrics,
+        lyricIndex: state.player.lyricIndex,
     }),shallowEqualApp)
+    const dispatch = useAppDispatch()
     // 组件内副作用操作
     useEffect(()=>{
 
@@ -46,18 +51,39 @@ const AppPlayerBar:FC<IProps> = () =>{
     },[currentSong])
     // 音乐播放得进度处理
     function handleTimeUpdate() {
-        const currentTime = audioRef.current!.currentTime
+        const currentTime = audioRef.current!.currentTime * 1000
 
 
         // 计算当前歌曲进度
         // api 给的数据是毫秒 但是 currentTime是秒 所以 x1000  除以总进度 然后计算百分比
         if(!isSliding){
-            const progress = (currentTime * 1000  /duration) * 100
+            const progress = (currentTime  /duration) * 100
             setProgress(progress)
             setCurrentTime(currentTime)
         }
     //     根据当前的时间匹配对应的歌词
+        let index = lyrics.length - 1   // 能播放最后一句歌词 也就是大于所有时间 默认值
+        for(let i=0;i<lyrics.length;i++){
+            const lyric = lyrics[i]
+            if(lyric.time>currentTime){
+                index = i - 1
+                break
+            }
+        }
 
+
+        // 记录index 省得一直输出
+        if (lyricIndex === index || index === -1) return
+
+        dispatch(changeLyricIndexAction(index))
+        console.log(lyrics[index].text)
+        // 展示歌词
+
+        message.open({
+            content: lyrics[index].text,
+            key: 'lyric',
+            duration: 0
+        })
     }
 
     // 组件内部事件处理
@@ -84,7 +110,7 @@ const AppPlayerBar:FC<IProps> = () =>{
         // 获取点击位置的时间  百分比 * 总时间
         const currentTime = (value/100) * duration
         // 设置当前播放得时间
-        audioRef.current!.currentTime = currentTime
+        audioRef.current!.currentTime = currentTime / 1000
         //  current / progress / slider
         setCurrentTime(currentTime)
         setProgress(value)
