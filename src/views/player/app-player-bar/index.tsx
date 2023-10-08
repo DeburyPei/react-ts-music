@@ -16,8 +16,8 @@ const AppPlayerBar:FC<IProps> = () =>{
     const [duration,setDuration] = useState(0)
     //当前播放事件
     const [currentTime,setCurrentTime] = useState(0)
-
-
+    // 是否在滑动
+    const [isSliding, setIsSliding] = useState(false)
     const audioRef = useRef<HTMLAudioElement>(null)
     // 从 redux 中获取数据
     const {currentSong} = useAppSelector((state)=>({
@@ -33,14 +33,19 @@ const AppPlayerBar:FC<IProps> = () =>{
     },[currentSong])
     // 音乐播放得进度处理
     function handleTimeUpdate() {
-        const currentTime = audioRef.current!.currentTime
-        console.log("currentTime",currentTime)
+        const currentTime = audioRef.current!.currentTime * 1000
+
 
         // 计算当前歌曲进度
         // api 给的数据是毫秒 但是 currentTime是秒 所以 x1000  除以总进度 然后计算百分比
-        const progress = ((currentTime * 1000)/duration) * 100
-        setProgress(progress)
+        if(!isSliding){
+            const progress = (currentTime /duration) * 100
+            setProgress(progress)
+            setCurrentTime(currentTime)
+        }
+
     }
+
     // 组件内部事件处理
     function handlePlayBtnClick() {
         // 控制播放器得播放与暂停
@@ -50,6 +55,28 @@ const AppPlayerBar:FC<IProps> = () =>{
 
         setIsPlaying(!isPlaying)
     }
+    // 处理拖拽状态 onChaning
+    function handleSliderChanging(value:number){
+        // 处于拖拽状态
+        setIsSliding(true)
+    //      设置 progress
+        setProgress(value)
+    //     获取value对应位置的时间
+        const currentTime = (value/100) * duration
+        setCurrentTime(currentTime)
+    }
+    // 处理滚动条 改变后事件
+    function handleSliderChanged(value:number) {
+        // 获取点击位置的时间  百分比 * 总时间
+        const currentTime = (value/100) * duration
+        // 设置当前播放得时间
+        audioRef.current!.currentTime = currentTime
+        //  current / progress / slider
+        setCurrentTime(currentTime)
+        setProgress(value)
+        setIsSliding(false)
+    }
+    console.log("progress",progress)
     return (
         <PlayerBarWrapper className="sprite_playbar">
             <div className="content wrap-v2">
@@ -73,7 +100,8 @@ const AppPlayerBar:FC<IProps> = () =>{
                                 step={0.5}
                                 // value={progress}
                                 tooltip={{formatter:null}}
-
+                                onAfterChange={handleSliderChanged}
+                                onChange={handleSliderChanged}
 
                             />
                             <div className="time">

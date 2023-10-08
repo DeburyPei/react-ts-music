@@ -12,7 +12,7 @@ const TopRanking:FC<IProps> = () =>{
     const {rankings} = useAppSelector((state)=>({
         rankings:state.recommend.rankings
     }))
-    console.log(rankings)
+
     return (
         <RankingWrapper>
             <AreaHeaderV1 title="榜单" />
