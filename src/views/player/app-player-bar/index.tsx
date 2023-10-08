@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {Slider} from 'antd'
 import {shallowEqualApp, useAppSelector} from "@/store";
 import {formatTime, getImageSize} from "@/utils/format";
+import {getSongPlayUrl} from "@/utils/handle-player";
 interface IProps {
     children?:ReactNode,
 }
@@ -27,7 +28,19 @@ const AppPlayerBar:FC<IProps> = () =>{
     useEffect(()=>{
 
     //     1 播放音乐
-    //     2 获取音乐总时长
+        audioRef.current!.src = getSongPlayUrl(currentSong.id)
+        audioRef.current
+            ?.play()
+            .then(() => {
+                setIsPlaying(true)
+                console.log('歌曲播放成功')
+            })
+            .catch((err) => {
+                setIsPlaying(false)
+                console.log('歌曲播放失败:', err)
+            })
+
+        //     2 获取音乐总时长
         setDuration(currentSong.dt)
 
     },[currentSong])
@@ -43,6 +56,7 @@ const AppPlayerBar:FC<IProps> = () =>{
             setProgress(progress)
             setCurrentTime(currentTime)
         }
+    //     根据当前的时间匹配对应的歌词
 
     }
 
