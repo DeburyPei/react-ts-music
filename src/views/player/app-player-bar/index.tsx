@@ -6,7 +6,7 @@ import {message, Slider} from 'antd'
 import {shallowEqualApp, useAppDispatch, useAppSelector} from "@/store";
 import {formatTime, getImageSize} from "@/utils/format";
 import {getSongPlayUrl} from "@/utils/handle-player";
-import {changeLyricIndexAction, changePlayModeAction} from "@/views/player/store/player";
+import {changeLyricIndexAction, changeMusicAction, changePlayModeAction} from "@/views/player/store/player";
 
 interface IProps {
     children?:ReactNode,
@@ -124,14 +124,18 @@ const AppPlayerBar:FC<IProps> = () =>{
         if (newPlayMode > 2) newPlayMode = 0
         dispatch(changePlayModeAction(newPlayMode))
     }
+    //切换歌曲
+    function handleChangeMusic(isNext = true) {
+        dispatch(changeMusicAction(isNext))
+    }
     return (
         <PlayerBarWrapper className="sprite_playbar">
             <div className="content wrap-v2">
                 <BarControl isPlaying={isPlaying}>
-                    <button className="sprite_playbar btn prev"></button>
+                    <button className="sprite_playbar btn prev" onClick={()=>handleChangeMusic()}></button>
                     <button className="sprite_playbar btn play"
                     onClick={handlePlayBtnClick}></button>
-                    <button className="sprite_playbar btn next"></button>
+                    <button className="sprite_playbar btn next" onClick={()=>handleChangeMusic()}></button>
                 </BarControl>
                 <BarPlayerInfo>
                     <Link to="/player">
