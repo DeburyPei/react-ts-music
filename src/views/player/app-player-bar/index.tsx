@@ -4,7 +4,7 @@ import {BarControl, BarOperator, BarPlayerInfo, PlayerBarWrapper} from "@/views/
 import {Link} from "react-router-dom";
 import {Slider} from 'antd'
 import {shallowEqualApp, useAppSelector} from "@/store";
-import {getImageSize} from "@/utils/format";
+import {formatTime, getImageSize} from "@/utils/format";
 interface IProps {
     children?:ReactNode,
 }
@@ -14,6 +14,9 @@ const AppPlayerBar:FC<IProps> = () =>{
     const [progress,setProgress] = useState(0)
     // 总时间
     const [duration,setDuration] = useState(0)
+    //当前播放事件
+    const [currentTime,setCurrentTime] = useState(0)
+
 
     const audioRef = useRef<HTMLAudioElement>(null)
     // 从 redux 中获取数据
@@ -74,9 +77,9 @@ const AppPlayerBar:FC<IProps> = () =>{
 
                             />
                             <div className="time">
-                                <span className="current">0:52</span>
+                                <span className="current">{formatTime(currentTime)}</span>
                                 <span className="divider">/</span>
-                                <span className="duration">4.36</span>
+                                <span className="duration">{formatTime(duration)}</span>
                             </div>
                             
                         </div>
