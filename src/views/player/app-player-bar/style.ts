@@ -70,11 +70,12 @@ export const BarPlayerInfo = styled.div`
     margin-left: 10px;
 
     .song {
+      display: flex;
       color: #e1e1e1;
       position: relative;
       top: 8px;
       left: 8px;
-      display: flex;
+
       .singer-name {
         color: #a1a1a1;
         margin-left: 10px;
@@ -105,12 +106,16 @@ export const BarPlayerInfo = styled.div`
           width: 22px;
           height: 24px;
           border: none;
-          margin-top: -7px;
+          margin-top: -5px;
           background: url(${require('@/assets/img/sprite_icon.png')}) 0 -250px;
+        }
+        .ant-slider-handle:before ,.ant-slider-handle:after{
+          display: none;
         }
       }
 
       .time {
+       
         .current {
           color: #e1e1e1;
         }
@@ -166,15 +171,15 @@ export const BarOperator = styled.div<IBarOperator>`
 
     .loop {
       background-position: ${(props) => {
-    switch (props.playMode) {
-        case 1:
+        switch (props.playMode) {
+          case 1:
             return '-66px -248px'
-        case 2:
+          case 2:
             return '-66px -344px'
-        default:
+          default:
             return '-3px -344px'
-    }
-}};
+        }
+      }};
     }
 
     .playlist {
