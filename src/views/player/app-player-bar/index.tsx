@@ -84,7 +84,8 @@ const AppPlayerBar:FC<IProps> = () =>{
         message.open({
             content: lyrics[index].text,
             key: 'lyric',
-            duration: 0
+            duration: 0,
+
         })
     }
 
@@ -127,6 +128,15 @@ const AppPlayerBar:FC<IProps> = () =>{
     //切换歌曲
     function handleChangeMusic(isNext = true) {
         dispatch(changeMusicAction(isNext))
+    }
+    //播放结束
+    function handleTimeEnded() {
+        if (playMode === 2) {
+            audioRef.current!.currentTime = 0
+            audioRef.current?.play()
+        } else {
+            handleChangeMusic(true)
+        }
     }
     return (
         <PlayerBarWrapper className="sprite_playbar">
@@ -180,6 +190,7 @@ const AppPlayerBar:FC<IProps> = () =>{
             <audio
                 ref={audioRef}
                 onTimeUpdate={handleTimeUpdate}
+                onEnded={handleTimeEnded}
             />
         </PlayerBarWrapper>
     )
